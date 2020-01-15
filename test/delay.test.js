@@ -22,7 +22,7 @@ describe('delay', () => {
 
     const passed = Date.now() - start
 
-    strictEqual(passed - time >= 0, true)
+    strictEqual(passed - time >= -5, true)
     strictEqual(passed - time < 5, true)
   })
 })
