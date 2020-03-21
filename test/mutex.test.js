@@ -54,5 +54,34 @@ describe('mutex', () => {
 
       strictEqual(typeof m.unlock, 'function')
     })
+
+    it('should do nothing if the mutex is not yet locked', async () => {
+      let error = null
+      const m = mutex()
+
+      try {
+        m.unlock()
+      } catch (err) {
+        error = err
+      }
+
+      strictEqual(error, null)
+    })
+
+    it('should do nothing if the mutex is already unlocked', async () => {
+      let error = null
+      const m = mutex()
+
+      await m.lock()
+      m.unlock()
+
+      try {
+        m.unlock()
+      } catch (err) {
+        error = err
+      }
+
+      strictEqual(error, null)
+    })
   })
 })

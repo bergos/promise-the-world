@@ -14,6 +14,10 @@ class Mutex {
   }
 
   unlock () {
+    if (!this._lock) {
+      return
+    }
+
     this._lock.resolve()
     this._lock = null
   }
